@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>codejam-canvas</title>
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="navigation">
+            <div class="nav-blocks">
+                <div class="nav"></div>
+                <div class="nav"></div>
+                <div class="nav"></div>
+            </div>
+            <div class="nav-blocks">CodeJam - Palette</div>  
+        </div>
+        <div class="row">
+            
+            <div class="Toolbar">
+                - Инструменты -<br>
+                <img id="Pen" src="./assets/pencil.svg" alt="" onclick="changePenColor(getColor(), this)">
+                <img id="bucket" src="./assets/paint bucket.svg" alt="" onclick="changeBackground(getColor(), this)"> 
+                <img id="eyeDropper" src="./assets/eye-dropper.svg" alt="" onclick="pickColor()">
+        </div>
+        <div class="Toolbar weight" disabled>
+                - Толщина -<br>
+                <img src="http://professorweb.ru/downloads/pen_thin.gif" alt="Тонкая кисть" onclick="changeThickness(1, this)">
+                <img src="http://professorweb.ru/downloads/pen_medium.gif" alt="Нормальная кисть" onclick="changeThickness(5, this)"> 
+                <img src="http://professorweb.ru/downloads/pen_thick.gif" alt="Толстая кисть" onclick="changeThickness(10, this)">
+        </div>
+        <div class="Toolbar">           
+           <p>- Выбор цвета: -</p><br>
+    
+            <div>
+                <input type="color" id="head" name="head" value="#000000"> <br>
+               
+                    <button id="prevColor" value="">Previos color</button>
+                    <button id="defualtColor" value="rgba(0,0,0,255)" onclick="applyDefaultColor()">Default color</button> 
+                    <div id="pickedcolor">Picked color</div>
+               
+                              
+            </div>           
+         </div>
+        <div class="CanvasContainer">
+                <canvas id="drawingCanvas" width="512" height="512"></canvas>
+        </div>
+        <div class="Toolbar">
+                - Операции-<br>
+                <!-- <button onclick="saveCanvas()">Сохранить содержимое Canvas</!--> -->
+                <button id="resetCanvas" onclick="clearCanvas()">Очистить Canvas</button>
+                <!-- <div id="savedCopyContainer"> -->
+                   <!-- <img id="savedImageCopy"><br> -->
+                   <!-- Щелкните правой кнопкой мыши для сохранения ... -->
+                </div>
+        </div>
+        
+                <!-- <canvas id="draw" width="512" height="512">                    
+                </canvas>                 -->
+                        
+            <!-- <div class="button-block">
+                <ul>
+                    <li><button id="bgImage">Image</button></li>
+                    <li><button id="btn4x4">4x4</button></li>
+                    <li><button id="btn32x32">32x32</button></li>
+                </ul>
+            </div> -->
+        </div>
+    </div>
+
+    <script src="my-palette.js"></script>
+</body>
+</html>
