@@ -62,7 +62,7 @@ function updateFirst() {
 function changePrevColor() {
   if (prevColorsData.length > 2) prevColorsData = prevColorsData.slice(1);
   prevColor.style.background = prevColorsData[0];
-  prevColor.value = prevColorsData[0];
+  prevColor.value = prevColorsData[0];  
 }
 
 // Отслеживаем элемент <img> для толщины линии, по которому ранее щелкнули
@@ -147,10 +147,12 @@ function down(e) {
 
 function applyDefaultColor() {
   head.value = "#000000";
+  updateFirst();
 }
 
 function applyPrevColor() {
   head.value = prevColor.value;
+  updateFirst();
 }
 
 function clearCanvas() {
