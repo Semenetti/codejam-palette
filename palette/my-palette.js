@@ -7,6 +7,7 @@ var A = [
 
 let canvas;
 let ctx;
+let previousColorElement;
 
 window.onload = function () {
   canvas = document.getElementById('drawingCanvas');
@@ -19,13 +20,13 @@ window.onload = function () {
       ctx.fillRect(col * scale, row * scale, scale, scale);
     }
   }
+  changePenColor(getColor(), document.getElementById('Pen'));
 };
 
 function getColor() {
   return (color = head.value);
 }
 
-let previousColorElement;
 
 function changePenColor(color, imgElement) {
   // Подключаем требуемые для рисования события
