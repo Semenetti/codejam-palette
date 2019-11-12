@@ -51,8 +51,10 @@ head.addEventListener('input', updateFirst, false);
 function updateFirst() {
   if (document.getElementsByClassName('Selected')[0].id == 'Pen') {
     changePenColor(head.value, this.class);
-  } else {
+  } else if (document.getElementsByClassName('Selected')[0].id == 'bucket'){
     changeBackground(head.value, this.class);
+  } else {
+    return null;
   }
 }
 
