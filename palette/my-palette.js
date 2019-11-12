@@ -1,32 +1,31 @@
-var A = [
-  ['00BCD4', 'FFEB3B', 'FFEB3B', '00BCD4'],
-  ['FFEB3B', 'FFC107', 'FFC107', 'FFEB3B'],
-  ['FFEB3B', 'FFC107', 'FFC107', 'FFEB3B'],
-  ['00BCD4', 'FFEB3B', 'FFEB3B', '00BCD4']
+let A = [
+  ["00BCD4", "FFEB3B", "FFEB3B", "00BCD4"],
+  ["FFEB3B", "FFC107", "FFC107", "FFEB3B"],
+  ["FFEB3B", "FFC107", "FFC107", "FFEB3B"],
+  ["00BCD4", "FFEB3B", "FFEB3B", "00BCD4"]
 ];
-
+let prevColorsData = [head.value];
 let canvas;
 let ctx;
 let previousColorElement;
 
-window.onload = function () {
-  canvas = document.getElementById('drawingCanvas');
-  ctx = canvas.getContext('2d');
+window.onload = function() {
+  canvas = document.getElementById("drawingCanvas");
+  ctx = canvas.getContext("2d");
   (width = A[0].length), (height = A.length), (scale = 128);
 
   for (let row = 0; row < height; row++) {
     for (let col = 0; col < width; col++) {
-      ctx.fillStyle = '#' + A[row][col];
+      ctx.fillStyle = "#" + A[row][col];
       ctx.fillRect(col * scale, row * scale, scale, scale);
     }
   }
-  changePenColor(getColor(), document.getElementById('Pen'));
+  changePenColor(getColor(), document.getElementById("Pen"));
 };
 
-function getColor() {
-  return (color = head.value);
+function getColor() {  
+  return head.value;
 }
-
 
 function changePenColor(color, imgElement) {
   // Подключаем требуемые для рисования события
@@ -39,23 +38,31 @@ function changePenColor(color, imgElement) {
   ctx.strokeStyle = color;
 
   // Меняем стиль элемента <img>, по которому щелкнули
-  imgElement.className = 'Selected';
+  imgElement.className = "Selected";
 
   // Возвращаем ранее выбранный элемент <img> в нормальное состояние
-  if (previousColorElement != null) previousColorElement.className = '';
+  if (previousColorElement != null) previousColorElement.className = "";
   previousColorElement = imgElement;
 }
 
-head.addEventListener('input', updateFirst, false);
+head.addEventListener("input", updateFirst, false);
 
 function updateFirst() {
-  if (document.getElementsByClassName('Selected')[0].id == 'Pen') {
+  prevColorsData.push(head.value);  
+  changePrevColor();
+  if (document.getElementsByClassName("Selected")[0].id == "Pen") {
     changePenColor(head.value, this.class);
-  } else if (document.getElementsByClassName('Selected')[0].id == 'bucket'){
+  } else if (document.getElementsByClassName("Selected")[0].id == "bucket") {
     changeBackground(head.value, this.class);
   } else {
     return null;
   }
+}
+
+function changePrevColor() {
+  if (prevColorsData.length > 2) prevColorsData = prevColorsData.slice(1);
+  prevColor.style.background = prevColorsData[0];
+  prevColor.value = prevColorsData[0];
 }
 
 // Отслеживаем элемент <img> для толщины линии, по которому ранее щелкнули
@@ -66,10 +73,10 @@ function changeThickness(thickness, imgElement) {
   ctx.lineWidth = thickness;
 
   // Меняем стиль элемента <img>, по которому щелкнули
-  imgElement.className = 'Selected';
+  imgElement.className = "Selected";
 
   // Возвращаем ранее выбранный элемент <img> в нормальное состояние
-  if (previousThicknessElement != null) previousThicknessElement.className = '';
+  if (previousThicknessElement != null) previousThicknessElement.className = "";
 
   previousThicknessElement = imgElement;
 }
@@ -104,8 +111,8 @@ function stopDrawing() {
 function changeBackground(color, imgElement) {
   canvas.onmousedown = changeBgColor;
   ctx.fillStyle = color;
-  imgElement.className = 'Selected';
-  if (previousColorElement != null) previousColorElement.className = '';
+  imgElement.className = "Selected";
+  if (previousColorElement != null) previousColorElement.className = "";
   previousColorElement = imgElement;
 }
 
@@ -122,12 +129,10 @@ function bucket(xPosition, yPosition) {
   );
 }
 
-function pickColor() {
-  console.log(previousColorElement);
-  console.log(document.getElementById('eyeDropper'));
-  eyeDropper.classList.add('Selected');
-  if (previousColorElement != null) previousColorElement.className = '';
-  previousColorElement = document.getElementById('eyeDropper');
+function pickColor() { 
+  eyeDropper.classList.add("Selected");
+  if (previousColorElement != null) previousColorElement.className = "";
+  previousColorElement = document.getElementById("eyeDropper");
   canvas.onmousedown = down;
 }
 
@@ -136,12 +141,16 @@ function down(e) {
   let canvasY = Math.floor(e.pageY - canvas.offsetTop);
   let imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
   let pixel = imageData.data;
-  let pickedColor = pixel[0] + ',' + pixel[1] + ',' + pixel[2] + ',' + pixel[3];
-  pickedcolor.style.background = 'rgba(' + pickedColor + ')';
+  let pickedColor = pixel[0] + "," + pixel[1] + "," + pixel[2] + "," + pixel[3];
+  pickedcolor.style.background = "rgba(" + pickedColor + ")";
 }
 
 function applyDefaultColor() {
-  head.value = '#000000';
+  head.value = "#000000";
+}
+
+function applyPrevColor() {
+  head.value = prevColor.value;
 }
 
 function clearCanvas() {
