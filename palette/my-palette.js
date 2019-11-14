@@ -159,6 +159,23 @@ function applyPrevColor() {
   updateFirst();
 }
 
+document.addEventListener('keydown', (event) => { 
+  switch (event.code) {
+    case 'KeyP':
+      changePenColor(getColor(), document.getElementById("Pen"));
+      break;
+    case 'KeyB':
+      changeBackground(getColor(), document.getElementById("bucket"));
+      break;
+    case 'KeyC':
+      pickColor();      
+      break;
+    default:      
+      break;
+  }
+});
+
+
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
