@@ -8,6 +8,9 @@ let prevColorsData = [head.value];
 let canvas;
 let ctx;
 let previousColorElement;
+let isDrawing = false;
+let dataURL;
+let cashedImg = new Image;
 
 window.onload = function() {
   canvas = document.getElementById("drawingCanvas");
@@ -20,8 +23,21 @@ window.onload = function() {
       ctx.fillRect(col * scale, row * scale, scale, scale);
     }
   }
+
+dataURL = localStorage.getItem(canvas);
+if (dataURL != null) {
+  cashedImg.src = dataURL;
+  cashedImg.onload = function () {
+      ctx.drawImage(cashedImg, 0, 0);
+  };
+}
   changePenColor(getColor(), document.getElementById("Pen"));
 };
+
+drawingCanvas.addEventListener('click', () => { 
+  localStorage.setItem(canvas, drawingCanvas.toDataURL());   
+});
+
 
 function getColor() {  
   return head.value;
@@ -43,6 +59,7 @@ return false;
  } else {   
    imgElement.className = "Selected";
  }
+
 
   // Возвращаем ранее выбранный элемент <img> в нормальное состояние
   if (previousColorElement != null) previousColorElement.className = "";
@@ -104,7 +121,7 @@ function draw(e) {
 
     // Рисуем линию до новой координаты
     ctx.lineTo(x, y);
-    ctx.stroke();
+    ctx.stroke();    
   }
 }
 
@@ -175,7 +192,9 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-
 function clearCanvas() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+ // ctx.clearRect(0, 0, canvas.width, canvas.height);
+  localStorage.removeItem(canvas);
+  window.location.reload();
 }
+
