@@ -1,0 +1,113 @@
+.Toolbar {
+  float: left;
+  font-family: 'Trebuchet MS';
+  font-size: 14px;
+  font-variant: small-caps;
+  text-align: center;
+  background: #F2F7FE;
+  padding: 10px 15px 3px 10px;
+  margin-bottom: 1px;
+  margin-right: 1px;
+  border: 1px solid #7B899B;
+}
+
+.Toolbar img {
+  width: 36px;
+}
+
+.Toolbar button {
+  padding: 6px;
+  margin: 7px 2px;
+  font-variant: normal;
+  font-size: 12px;
+}
+
+.CanvasContainer {
+  clear: both;
+}
+
+canvas {
+  border: 1px solid #7B899B;
+}
+
+img {
+  padding: 2px;
+  border: 2px solid #F2F7FE;
+}
+
+img:hover {
+  border: 2px groove #E4F0FE;
+  background: white;
+}
+
+img.Selected {
+  border: 2px groove #E4F0FE;
+}
+
+.wrapper {
+  width: 1440px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.nav {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}
+
+.navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav-blocks {
+  margin-left: 20px;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.row {
+  height: 80vh;
+  margin-top: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+canvas {
+  border: 2px solid grey;
+}
+
+#prevColor, #defualtColor, #pickedcolor {
+  width: 50%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+#pickedcolor {
+  border: 2px solid red;
+  margin: 0 auto;
+}
+
+#defualtColor {
+  background: black;
+  color: #ffffff;
+}
+/*# sourceMappingURL=style.css.map */

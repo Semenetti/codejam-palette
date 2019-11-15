@@ -1,0 +1,17 @@
+{
+  "name": "palette",
+  "version": "1.0.0",
+  "description": "",
+  "main": "my-palette.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adriano Semenetti",
+  "license": "ISC"
+}
